@@ -13,11 +13,6 @@ public class PlayerLocomotion : MonoBehaviour
     private static readonly int Speed = Animator.StringToHash("Speed");
 
 
-    void Update()
-    {
-        animator.SetFloat(Speed,Mathf.Abs(joystick.Horizontal)+Mathf.Abs(joystick.Vertical));
-    }
-
     private void FixedUpdate()
     {
         rigidbody.velocity = new Vector3(joystick.Horizontal * speed,0 , joystick.Vertical*speed);
@@ -25,5 +20,6 @@ public class PlayerLocomotion : MonoBehaviour
             transform.rotation = Quaternion.Slerp(transform.rotation,
                 Quaternion.LookRotation(new Vector3(joystick.Horizontal, 0, joystick.Vertical)),
                 rotationSpeed * Time.deltaTime);
+        animator.SetFloat(Speed,Mathf.Abs(joystick.Horizontal)+Mathf.Abs(joystick.Vertical));
     }
 }
