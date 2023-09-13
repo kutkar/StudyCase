@@ -213,6 +213,11 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 520069055}
+    - target: {fileID: 6822010618907424160, guid: fd7e9ab2c6ec66c47a0e7b7c83ffcab3,
+        type: 3}
+      propertyPath: m_RenderMode
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6822010618907424161, guid: fd7e9ab2c6ec66c47a0e7b7c83ffcab3,
         type: 3}
       propertyPath: m_Pivot.x
@@ -338,6 +343,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 208681943939679617, guid: 00200ef83b56d2348b97c573e8b4299f,
+        type: 3}
+      propertyPath: playerCamera
+      value: 
+      objectReference: {fileID: 520069055}
     - target: {fileID: 535227310935417775, guid: 00200ef83b56d2348b97c573e8b4299f,
         type: 3}
       propertyPath: joystick
@@ -403,6 +413,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 7377630890909414569, guid: 00200ef83b56d2348b97c573e8b4299f,
+        type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 520069055}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 00200ef83b56d2348b97c573e8b4299f, type: 3}
 --- !u!1 &1336364946
@@ -613,6 +628,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5367019336811731276, guid: 8adc4ff0702a3254ea2c6934d49fb640,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -13.16132
+      objectReference: {fileID: 0}
+    - target: {fileID: 5367019336811731276, guid: 8adc4ff0702a3254ea2c6934d49fb640,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -53.72012
+      objectReference: {fileID: 0}
+    - target: {fileID: 5367019337714436534, guid: 8adc4ff0702a3254ea2c6934d49fb640,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -13.16132
+      objectReference: {fileID: 0}
+    - target: {fileID: 5367019337714436534, guid: 8adc4ff0702a3254ea2c6934d49fb640,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -53.72012
+      objectReference: {fileID: 0}
     - target: {fileID: 5367019337714436535, guid: 8adc4ff0702a3254ea2c6934d49fb640,
         type: 3}
       propertyPath: m_Follow
