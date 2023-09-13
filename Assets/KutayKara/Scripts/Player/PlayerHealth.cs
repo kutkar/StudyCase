@@ -1,4 +1,5 @@
 
+using System;
 using UnityEngine;
 
 public class PlayerHealth : Health
@@ -11,4 +12,11 @@ public class PlayerHealth : Health
         _healthBar.UpdateHealthBar(currentHealth, maxHealth);
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Enemy"))
+        {
+            Debug.Log("Dead");
+        }
+    }
 }

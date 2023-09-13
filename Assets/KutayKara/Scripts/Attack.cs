@@ -1,19 +1,19 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.Pool;
 
 public class Attack : MonoBehaviour
 {
-    public GameObject projectile;
-    public float projectileSpeed = 10.0f;
-    public float attackCoolDown = 3.0f;
-    
-    
     [SerializeField] private GameObject attackRange;
     [SerializeField] private float radiusMultiplier;
     [SerializeField] private SphereCollider collider;
+
     
+    public Projectile projectile;
+    public ObjectPool<Projectile> _projectilePool;
     
     //Debugging
     private void OnDrawGizmos()
@@ -23,8 +23,31 @@ public class Attack : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position,attackRange.transform.localScale.x*radiusMultiplier); //Will be the attack range
         collider.radius = attackRange.transform.localScale.x * radiusMultiplier;
     }
-    
-    //Collusion detection layers set in inspector. 
+
+
+    private void Start()
+    {
+        var poolPrefab = projectile;
+        _projectilePool = new ObjectPool<Projectile>(() =>
+            {
+                return Instantiate(poolPrefab,transform.position,Quaternion.identity);
+            },
+            _type =>
+            {
+                _type.attacker = this;
+                _type.transform.position = transform.position;
+                _type.gameObject.SetActive(true);
+            },
+            _type =>
+            {
+                _type.gameObject.SetActive(false);
+            },_type =>
+            {
+                Destroy(_type.gameObject);
+            },false,10);
+    }
+
+
     private void OnTriggerEnter(Collider other)
     {
           OnEnter(other.gameObject);
@@ -46,7 +69,7 @@ public class Attack : MonoBehaviour
         
     }
 
-    protected virtual void Projectile(GameObject projectile, GameObject target)
+    protected virtual void Projectile(GameObject target)
     {
         
     }
