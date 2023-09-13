@@ -1693,7 +1693,7 @@ GameObject:
   - component: {fileID: 628026324925491924}
   m_Layer: 6
   m_Name: PlayerHealth
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1744,6 +1744,7 @@ MonoBehaviour:
   currentHealth: 0
   lowHealth: 20
   _healthBar: {fileID: 208681943939679617}
+  restartButton: {fileID: 0}
 --- !u!1 &8334111837789500220
 GameObject:
   m_ObjectHideFlags: 0
