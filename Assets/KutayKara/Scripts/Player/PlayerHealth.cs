@@ -12,9 +12,9 @@ public class PlayerHealth : Health
         _healthBar.UpdateHealthBar(currentHealth, maxHealth);
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision other)
     {
-        if (other.CompareTag("Enemy"))
+        if (other.gameObject.CompareTag("Enemy"))
         {
             Debug.Log("Dead");
         }

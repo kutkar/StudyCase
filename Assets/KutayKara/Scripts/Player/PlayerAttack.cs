@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Unity.Mathematics;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerAttack : Attack
@@ -11,6 +12,8 @@ public class PlayerAttack : Attack
     [SerializeField] List<GameObject> targets = new List<GameObject>();
     [SerializeField] private bool _isAttacking = false;
     [SerializeField] float attackCooldown = 2.0f;
+    
+    
     protected override void OnEnter(GameObject target)
     {
         if (target.gameObject.CompareTag("Enemy"))

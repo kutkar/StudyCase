@@ -10,23 +10,29 @@ public class Attack : MonoBehaviour
     [SerializeField] private GameObject attackRange;
     [SerializeField] private float radiusMultiplier;
     [SerializeField] private SphereCollider collider;
-
+    
     
     public Projectile projectile;
     public ObjectPool<Projectile> _projectilePool;
-    
+
     //Debugging
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-        //Since plane units are 10x10 the multiplier is needed.
-        Gizmos.DrawWireSphere(transform.position,attackRange.transform.localScale.x*radiusMultiplier); //Will be the attack range
-        collider.radius = attackRange.transform.localScale.x * radiusMultiplier;
-    }
+    //private void OnDrawGizmos()
+    //{
+    //    Gizmos.color = Color.red;
+    //    //Since plane units are 10x10 the multiplier is needed.
+    //    Gizmos.DrawWireSphere(transform.position,attackRange.transform.localScale.x*radiusMultiplier); //Will be the attack range
+    //    
+    //}
 
 
     private void Start()
     {
+        if (collider)
+        {
+            Debug.Log("Collider Scale: "+attackRange.transform.localScale.x);
+            collider.radius = attackRange.transform.localScale.x * radiusMultiplier;
+        }
+        
         var poolPrefab = projectile;
         _projectilePool = new ObjectPool<Projectile>(() =>
             {
