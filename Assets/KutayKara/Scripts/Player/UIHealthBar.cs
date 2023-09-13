@@ -19,4 +19,7 @@ public class UIHealthBar : MonoBehaviour
     {
         transform.rotation = Quaternion.LookRotation(transform.position - playerCamera.transform.position);
     }
+    
+   
+    
 }
