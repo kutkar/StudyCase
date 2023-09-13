@@ -6,12 +6,12 @@ public class AIHealth : Health
 {
     protected override void OnDamage(float amount)
     {
-        
+        currentHealth -= amount;
     }
 
     protected override void OnDeath()
     {
-        //todo: return to the pool;
+        agent.StateMachine.ChangeState(AIStateId.Death);
     }
 
     

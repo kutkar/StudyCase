@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Pool;
 using UnityEngine.Serialization;
 
 public class AIAgent : MonoBehaviour
@@ -16,7 +17,8 @@ public class AIAgent : MonoBehaviour
     public float attackPlayerSpeed = 5.0f;
     [HideInInspector] public AIStateMachine StateMachine;
     [SerializeField] private AIStateId currentState; //To monitorize
-    void Start()
+    public ObjectPool<AIAgent> agentPool;
+    void Awake()
     {
         InitializeAI();
     }
@@ -27,13 +29,17 @@ public class AIAgent : MonoBehaviour
         currentState = StateMachine.currentState;
     }
 
-    private void InitializeAI()
+    public void InitializeAI()
     {
         health.currentHealth = health.maxHealth;
         StateMachine = new AIStateMachine(this);
         StateMachine.RegisterState(new AIAttackState());
         StateMachine.RegisterState(new AIDeathState());
         StateMachine.ChangeState(AIStateId.AttackPlayer);
-        
+    }
+
+    private void OnEnable()
+    {
+        if(StateMachine!=null) StateMachine.ChangeState(AIStateId.AttackPlayer);
     }
 }

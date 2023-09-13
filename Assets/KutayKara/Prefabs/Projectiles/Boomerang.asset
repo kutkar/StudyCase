@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Boomerang
   m_EditorClassIdentifier: 
   projectileType: 0
-  Speed: 5
+  Speed: 9
   Damage: 5
   TimeToLive: 3

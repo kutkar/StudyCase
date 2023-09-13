@@ -14,7 +14,7 @@ public class AIDeathState : AIState
     public void Enter(AIAgent agent)
     {
         agent.navMeshAgent.enabled = false;
-        agent.animator.SetTrigger("Death");
+        agent.animator.SetTrigger("Dead");
     }
 
     public void Update(AIAgent agent)
@@ -25,7 +25,9 @@ public class AIDeathState : AIState
 
     public void Exit(AIAgent agent)
     {
-        //Todo: return pool
+        agent.agentPool.Release(agent);
+        agent.health.currentHealth = agent.health.maxHealth;
+        agent.GetComponent<Collider>().enabled = false;
     }
     
     

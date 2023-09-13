@@ -31,14 +31,13 @@ public class Projectile : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Enemy"))
         {
-            Debug.Log(other.name);
-            other.gameObject.SetActive(false);
-            attacker._projectilePool.Release(this);
+            other.gameObject.GetComponent<AIHealth>().TakeDamage(projectileData.Damage);
+            attacker.projectilePool.Release(this);
         }
         else if(other.gameObject.CompareTag("Player"))
         {
             other.GetComponent<PlayerHealth>().TakeDamage(projectileData.Damage);
-            attacker._projectilePool.Release(this);
+            attacker.projectilePool.Release(this);
         }
     }
 
@@ -56,7 +55,7 @@ public class Projectile : MonoBehaviour
         if (lifeTime >= projectileData.TimeToLive)
         {
             lifeTime = 0.0f;
-            attacker._projectilePool.Release(this);
+            attacker.projectilePool.Release(this);
         }
     }
 }

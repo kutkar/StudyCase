@@ -13,6 +13,7 @@ public class AIAttackState : AIState
 
     public void Enter(AIAgent agent)
     {
+        agent.navMeshAgent.enabled = true;
         agent.navMeshAgent.speed = agent.attackPlayerSpeed;
     }
 

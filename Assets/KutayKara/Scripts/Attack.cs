@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Pool;
+using UnityEngine.Serialization;
 
 public class Attack : MonoBehaviour
 {
@@ -13,7 +14,7 @@ public class Attack : MonoBehaviour
     
     
     public Projectile projectile;
-    public ObjectPool<Projectile> _projectilePool;
+    [FormerlySerializedAs("_projectilePool")] public ObjectPool<Projectile> projectilePool;
 
     //Debugging
     //private void OnDrawGizmos()
@@ -34,7 +35,7 @@ public class Attack : MonoBehaviour
         }
         
         var poolPrefab = projectile;
-        _projectilePool = new ObjectPool<Projectile>(() =>
+        projectilePool = new ObjectPool<Projectile>(() =>
             {
                 return Instantiate(poolPrefab,transform.position,Quaternion.identity);
             },

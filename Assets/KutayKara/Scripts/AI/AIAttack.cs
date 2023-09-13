@@ -23,7 +23,7 @@ public class AIAttack : Attack
     }
     protected override void Projectile(GameObject target)
     {
-        var obj = _projectilePool.Get();
+        var obj = projectilePool.Get();
         obj.target = target.transform;
         obj.transform.rotation = this.transform.rotation;
         obj.Target = target.transform.position - obj.transform.position;
@@ -39,4 +39,6 @@ public class AIAttack : Attack
         navMeshAgent.enabled = true;
         isAttacking = false; //best way is to create a scriptable object but for now this is enough.
     }
+    
+    
 }

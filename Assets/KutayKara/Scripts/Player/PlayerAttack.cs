@@ -31,7 +31,7 @@ public class PlayerAttack : Attack
 
     protected override void Projectile(GameObject target)
     {
-        var obj = _projectilePool.Get();
+        var obj = projectilePool.Get();
         obj.target = target.transform;
         obj.transform.rotation = Quaternion.LookRotation(target.transform.position);
     }

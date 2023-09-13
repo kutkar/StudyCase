@@ -5,6 +5,8 @@ using UnityEngine;
 public class PlayerHealth : Health
 {
     [SerializeField] UIHealthBar _healthBar;
+    private static readonly int Dead = Animator.StringToHash("Dead");
+    public GameObject restartButton;
 
     protected override void OnDamage(float amount)
     {
@@ -12,11 +14,21 @@ public class PlayerHealth : Health
         _healthBar.UpdateHealthBar(currentHealth, maxHealth);
     }
 
-    private void OnCollisionEnter(Collision other)
+    private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Enemy"))
         {
-            Debug.Log("Dead");
+            TakeDamage(maxHealth);
         }
     }
+
+    protected override void OnDeath()
+    {
+        GetComponentInParent<PlayerLocomotion>().enabled = false;
+        GetComponentInParent<Animator>().SetTrigger(Dead);
+        restartButton.SetActive(true);
+    }
+    
+    
+    
 }

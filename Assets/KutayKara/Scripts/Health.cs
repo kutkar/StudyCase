@@ -5,13 +5,14 @@ using UnityEngine;
 
 public class Health : MonoBehaviour
 {
-    
+    public AIAgent agent;
     public float maxHealth;
     public float currentHealth;
     public float lowHealth = 20.0f;
     void Start()
     {
         currentHealth = maxHealth;
+        agent = GetComponent<AIAgent>();
     }
 
     public void TakeDamage(float amount)
