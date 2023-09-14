@@ -9,9 +9,17 @@ public class RegionManager : MonoBehaviour
     public ObjectPool<AIAgent> agentPool;
     public AIAgent agent;
     public GameObject Player;
+    
+    
+    [SerializeField] private PickUp pickUps;
+    [SerializeField] private float numberOfGolds;
     [SerializeField] private int amountOfEnemy = 15;
     [SerializeField] private Transform min;
     [SerializeField] private Transform max;
+
+    
+    
+
     private void Start()
     {
         var poolPrefab = agent;
@@ -35,7 +43,11 @@ _type =>
             {
                 Destroy(_type.gameObject);
             },false,amountOfEnemy);
-            
+        
+        for(int i = 0; i < numberOfGolds; i++)
+        {
+            Instantiate(pickUps, GetRandomLocation(pickUps.transform.position.y), Quaternion.identity);
+        }
         
     }
 
@@ -56,6 +68,8 @@ _type =>
         if(Vector3.Distance(loc,Player.transform.position)<10) return GetProperLocation();
         return loc;
     }
+    
+    private Vector3 GetRandomLocation(float y=0.0f) => new Vector3(UnityEngine.Random.Range(min.position.x,max.position.x),y,UnityEngine.Random.Range(min.position.z,max.position.z));
     
     
 }

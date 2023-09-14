@@ -4,6 +4,13 @@ using UnityEngine;
 
 public class AIHealth : Health
 {
+    public AIAgent agent;
+    
+    protected override void OnStart()
+    {
+        currentHealth = maxHealth;
+        agent = GetComponent<AIAgent>();
+    }
     protected override void OnDamage(float amount)
     {
         currentHealth -= amount;
@@ -11,6 +18,7 @@ public class AIHealth : Health
 
     protected override void OnDeath()
     {
+        agent.target.GetComponentInChildren<PlayerHealth>().AddScore(agent.scoreContribution);
         agent.StateMachine.ChangeState(AIStateId.Death);
     }
 

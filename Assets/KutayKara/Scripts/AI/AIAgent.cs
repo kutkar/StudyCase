@@ -12,13 +12,14 @@ public class AIAgent : MonoBehaviour
     public NavMeshAgent navMeshAgent;
     public AIHealth health;
     public AIAttack aiAttack;
-    public Transform target;
+    [HideInInspector]public Transform target;
     public float attackRange = 5.0f;
     public float attackPlayerSpeed = 5.0f;
+    public int scoreContribution = 1;
     [HideInInspector] public AIStateMachine StateMachine;
     [SerializeField] private AIStateId currentState; //To monitorize
     public ObjectPool<AIAgent> agentPool;
-    void Awake()
+    void Start()
     {
         InitializeAI();
     }
@@ -31,7 +32,6 @@ public class AIAgent : MonoBehaviour
 
     public void InitializeAI()
     {
-        health.currentHealth = health.maxHealth;
         StateMachine = new AIStateMachine(this);
         StateMachine.RegisterState(new AIAttackState());
         StateMachine.RegisterState(new AIDeathState());
@@ -40,6 +40,7 @@ public class AIAgent : MonoBehaviour
 
     private void OnEnable()
     {
-        if(StateMachine!=null) StateMachine.ChangeState(AIStateId.AttackPlayer);
+        if(StateMachine!=null)
+            StateMachine.ChangeState(AIStateId.AttackPlayer);
     }
 }

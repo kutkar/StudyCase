@@ -10,7 +10,7 @@ public class Attack : MonoBehaviour
 {
     [SerializeField] private GameObject attackRange;
     [SerializeField] private float radiusMultiplier;
-    [SerializeField] private SphereCollider collider;
+    [SerializeField] private new SphereCollider collider;
     
     
     public Projectile projectile;
@@ -23,15 +23,17 @@ public class Attack : MonoBehaviour
     //    //Since plane units are 10x10 the multiplier is needed.
     //    Gizmos.DrawWireSphere(transform.position,attackRange.transform.localScale.x*radiusMultiplier); //Will be the attack range
     //    
+    //    
     //}
 
 
     private void Start()
     {
+        OnStart();
         if (collider)
         {
-            Debug.Log("Collider Scale: "+attackRange.transform.localScale.x);
-            collider.radius = attackRange.transform.localScale.x * radiusMultiplier;
+           
+            collider.radius = radiusMultiplier;
         }
         
         var poolPrefab = projectile;
@@ -53,7 +55,7 @@ public class Attack : MonoBehaviour
                 Destroy(_type.gameObject);
             },false,10);
     }
-
+    
 
     private void OnTriggerEnter(Collider other)
     {
@@ -64,6 +66,11 @@ public class Attack : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
            OnExit(other.gameObject);
+    }
+
+    protected virtual void OnStart()
+    {
+        
     }
 
     protected virtual void OnEnter(GameObject target)

@@ -1255,8 +1255,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87f3725be5752da429a8fedca446fa4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
-  rotationSpeed: 10
+  playerData: {fileID: 11400000, guid: d1700bad7db75a34a944e8e82f97bc7b, type: 2}
   joystick: {fileID: 0}
   animator: {fileID: 535227310935417772}
   rigidbody: {fileID: 535227310935417761}
@@ -1645,9 +1644,9 @@ MonoBehaviour:
   collider: {fileID: 633535303}
   projectile: {fileID: 1263222328622046897, guid: 964c3af02f388c540a0a1c2a184ded17,
     type: 3}
+  playerData: {fileID: 11400000, guid: d1700bad7db75a34a944e8e82f97bc7b, type: 2}
   targets: []
   _isAttacking: 0
-  attackCooldown: 2
 --- !u!1 &8187542543920929840
 GameObject:
   m_ObjectHideFlags: 0
@@ -1739,12 +1738,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc2aa7eeda6924244a55d529566189ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  agent: {fileID: 0}
   maxHealth: 100
   currentHealth: 0
   lowHealth: 20
-  _healthBar: {fileID: 208681943939679617}
+  playerData: {fileID: 11400000, guid: d1700bad7db75a34a944e8e82f97bc7b, type: 2}
   restartButton: {fileID: 0}
+  _healthBar: {fileID: 208681943939679617}
+  _goldAndScoreUI: {fileID: 0}
 --- !u!1 &8334111837789500220
 GameObject:
   m_ObjectHideFlags: 0

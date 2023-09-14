@@ -8,11 +8,19 @@ using UnityEngine;
 
 public class PlayerAttack : Attack
 {
+    [SerializeField] private PlayerData playerData;
     //Targets 
     [SerializeField] List<GameObject> targets = new List<GameObject>();
     [SerializeField] private bool _isAttacking = false;
-    [SerializeField] float attackCooldown = 2.0f;
     
+    private float attackCooldown;
+
+
+    protected override void OnStart()
+    {
+        attackCooldown = playerData.attackCooldown;
+        projectile = playerData.projectilePrefab;
+    }
     
     protected override void OnEnter(GameObject target)
     {
@@ -26,7 +34,7 @@ public class PlayerAttack : Attack
     
     protected override void OnExit(GameObject target)
     {
-        targets.Remove(target);
+        RemoveTarget(target);
     }
 
     protected override void Projectile(GameObject target)
@@ -49,11 +57,19 @@ public class PlayerAttack : Attack
         _isAttacking = true;
         yield return new WaitForSeconds(0.5f); //First attack delay
         Projectile(nearestTarget);
+        //Todo:for this time they only die for one projectile. Refactor this.
+        RemoveTarget(nearestTarget);
         yield return new WaitForSeconds(attackCooldown);
         _isAttacking = false;
         if (targets.Count > 0) AttackTarget();
 
     }
+
+    public void RemoveTarget(GameObject target)
+    {
+        targets.Remove(target);
+    }
+    
     
     GameObject CalculateNearestEnemy() =>targets.OrderBy(x =>
         Vector3.Distance(transform.position, x.transform.position)).FirstOrDefault();

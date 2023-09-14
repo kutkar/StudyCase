@@ -9,7 +9,6 @@ public class UIHealthBar : MonoBehaviour
 {
     [SerializeField] private Camera playerCamera;
     [SerializeField] private Image healthBar;
-
     public void UpdateHealthBar(float currentHealth, float maxHealth)
     {
         healthBar.fillAmount = currentHealth/ maxHealth;
